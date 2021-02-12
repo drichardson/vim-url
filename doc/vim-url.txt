@@ -1,0 +1,36 @@
+*vim-url.txt*		Open URL plugin
+
+vim-url is a plugin for opening URLs in your default web browser.
+
+1. Install	|url-install|
+2. Commands	|url-commands|
+
+==============================================================================
+1. Install							*url-install*
+
+Install vim-url like any standard Vim |package|.
+
+==============================================================================
+2. Commands							*url-commands*
+
+								*:OpenURL*
+:OpenURL [url]		Open [url] in the system web browser.
+
+			If [url] not given, attempts to determine url using
+			|<cWORD>|. Can automatically detect standard URLs, URLs
+			missing http:// and https:// prefixes, and URLs in
+			markdown like [example link](https://example.com).
+
+								*:Google*
+:Google [terms]		Open a Google search for [terms].
+
+			If [terms] not given, uses |<cWORD>|.
+
+								*:DefineWord*
+:DefineWord [word]	Define an English word using the Merriam Webster
+			dictionary.
+
+			If [word] not given, uses |<cWORD>|.
+
+
+ vim: tw=78 ts=8 noet ft=help norl
