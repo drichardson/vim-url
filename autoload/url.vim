@@ -27,11 +27,20 @@ function url#open_command(qargs)
 
 		" Handle markdown links:
 		" [link description](http://example.com)
+		" https://daringfireball.net/projects/markdown/syntax#link
 		" Note that since cWORD will not include anything before the
 		" space, don't look for the opening [.
 		let markdown_url = url->matchlist('^.*\][(]\(.*\)[)]')
 		if len(markdown_url) >= 2
 			let url = markdown_url[1]
+		endif
+
+		" Handle rst links
+		" <link>
+		" https://docutils.sourceforge.io/docs/user/rst/quickref.html#external-hyperlink-targets
+		let rst_url = url->matchlist('^<\(.*\)>.*')
+		if len(rst_url)
+			let url = rst_url[1]
 		endif
 
 		" no prefix, use https:// by default.
