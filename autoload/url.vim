@@ -4,7 +4,12 @@ function url#open(url)
 	" The shellescape adds quotes on both sides, which we now need to remove
 	" so !slient doesn't choke on it.
 	let myurl=myurl[1:-2]
-	silent execute '!start' myurl
+	if has('win64') || has('win32')
+		silent execute '!start' myurl
+	else
+		let cmd = has('mac') ? 'open' : 'xdg-open'
+		silent let f = system(cmd.' '.myurl)
+	endif
 endfunction
 
 function url#open_command(qargs)
