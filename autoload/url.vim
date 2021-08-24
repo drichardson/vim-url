@@ -6,9 +6,12 @@ function url#open(url)
 	let myurl=myurl[1:-2]
 	if has('win64') || has('win32')
 		silent execute '!start' myurl
-	else
-		let cmd = has('mac') ? 'open' : 'xdg-open'
-		silent let f = system(cmd.' '.myurl)
+	elseif has('mac')
+		silent let f = system('open '.myurl)
+	elseif executable('xdg-open')
+		silent let f = system('xdg-open '.myurl)
+	elseif executable('sensible-browser')
+		silent let f = system('sensible-browser '.myurl)
 	endif
 endfunction
 
